@@ -1,6 +1,8 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:gerentelojavirtual/blocs/orders_bloc.dart';
 import 'package:gerentelojavirtual/blocs/user_bloc.dart';
+import 'package:gerentelojavirtual/tabs/orders_tab.dart';
 import 'package:gerentelojavirtual/tabs/users_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,7 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: BlocProvider(
           blocs: [
-            Bloc((i) => UserBloc())
+            Bloc((i) => UserBloc()),
+            Bloc((i) => OrdersBloc())
           ],
           child: PageView(
             controller: _pageController,
@@ -79,9 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             children: <Widget>[
               UsersTab(),
-              Container(
-                color: Colors.yellow,
-              ),
+              OrdersTab(),
               Container(
                 color: Colors.green,
               )
