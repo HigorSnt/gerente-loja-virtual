@@ -23,6 +23,10 @@ class UserBloc extends BlocBase {
     }
   }
 
+  Map<String, dynamic> getUser(String uid) {
+    return _users[uid];
+  }
+
   List<Map<String, dynamic>> _filter(String search) {
     List<Map<String, dynamic>> filteredUsers =
         List.from(_users.values.toList());

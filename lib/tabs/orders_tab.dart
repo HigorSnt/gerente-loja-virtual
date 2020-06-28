@@ -11,32 +11,33 @@ class OrdersTab extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
       child: StreamBuilder<List>(
-          stream: _ordersBloc.outOrders,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+        stream: _ordersBloc.outOrders,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+              ),
+            );
+          } else if (snapshot.data.length == 0) {
+            return Center(
+              child: Text(
+                'Nenhum pedido encontrado.',
+                style: TextStyle(
+                  color: Colors.pinkAccent,
                 ),
-              );
-            } else if (snapshot.data.length == 0) {
-              return Center(
-                child: Text(
-                  'Nenhum pedido encontrado.',
-                  style: TextStyle(
-                    color: Colors.pinkAccent,
-                  ),
-                ),
-              );
-            } else {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return OrderTile(snapshot.data[index]);
-                },
-                itemCount: snapshot.data.length,
-              );
-            }
-          }),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return OrderTile(snapshot.data[index]);
+              },
+              itemCount: snapshot.data.length,
+            );
+          }
+        },
+      ),
     );
   }
 }
