@@ -6,6 +6,7 @@ import 'package:gerentelojavirtual/blocs/user_bloc.dart';
 import 'package:gerentelojavirtual/tabs/orders_tab.dart';
 import 'package:gerentelojavirtual/tabs/products_tab.dart';
 import 'package:gerentelojavirtual/tabs/users_tab.dart';
+import 'package:gerentelojavirtual/widgets/edit_category_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -129,6 +130,17 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
+      );
+    } else if (_page == 2) {
+      return FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.pinkAccent,
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => EditCategoryDialog(),
+          );
+        },
       );
     } else {
       return null;

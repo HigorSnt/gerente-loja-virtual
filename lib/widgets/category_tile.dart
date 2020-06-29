@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gerentelojavirtual/screens/product_screen.dart';
+import 'package:gerentelojavirtual/widgets/edit_category_dialog.dart';
 
 class CategoryTile extends StatelessWidget {
   final DocumentSnapshot category;
@@ -58,11 +59,19 @@ class CategoryTile extends StatelessWidget {
                   }).toList()
                     ..add(
                       ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.pinkAccent,
+                        leading: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => EditCategoryDialog(category: category,),
+                            );
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.pinkAccent,
+                            ),
                           ),
                         ),
                         title: Text('Adicionar'),
