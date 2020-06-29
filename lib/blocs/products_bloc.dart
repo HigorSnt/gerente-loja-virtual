@@ -53,6 +53,10 @@ class ProductBloc extends BlocBase {
     unsavedData['images'] = images;
   }
 
+  void saveSizes(List sizes) {
+    unsavedData['sizes'] = sizes;
+  }
+
   void deleteProduct() {
     product.reference.delete();
   }

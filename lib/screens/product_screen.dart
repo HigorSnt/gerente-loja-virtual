@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gerentelojavirtual/blocs/products_bloc.dart';
 import 'package:gerentelojavirtual/validators/product_validator.dart';
 import 'package:gerentelojavirtual/widgets/images_widget.dart';
+import 'package:gerentelojavirtual/widgets/products_sizes.dart';
 
 class ProductScreen extends StatefulWidget {
   final String categoryId;
@@ -62,10 +63,12 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                   builder: (context, snapshot) {
                     return IconButton(
                       icon: Icon(Icons.remove),
-                      onPressed: snapshot.data ? null : () {
-                        _productBloc.deleteProduct();
-                        Navigator.of(context).pop();
-                      },
+                      onPressed: snapshot.data
+                          ? null
+                          : () {
+                              _productBloc.deleteProduct();
+                              Navigator.of(context).pop();
+                            },
                     );
                   },
                 );
@@ -131,6 +134,25 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                       decoration: _buildInputDecoration('Preço'),
                       onSaved: _productBloc.savePrice,
                       validator: validatePrice,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      'Imagens',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                      ),
+                    ),
+                    ProductsSizes(
+                      context: context,
+                      initialValue: snapshot.data['sizes'],
+                      onSaved: _productBloc.saveSizes,
+                      validator: (s) {
+                        if (s.isEmpty) return 'Adicione um tamanho!';
+                        return null;
+                      },
                     ),
                   ],
                 );
