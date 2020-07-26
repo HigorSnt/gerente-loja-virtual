@@ -13,7 +13,7 @@ class OrdersBloc extends BlocBase {
   Firestore _firestore = Firestore.instance;
 
   List<DocumentSnapshot> _orders = [];
-  SortCriteria _criteria;
+  SortCriteria _criteria = SortCriteria.READY_LAST;
 
   Stream<List> get outOrders => _ordersController.stream;
 
@@ -55,6 +55,7 @@ class OrdersBloc extends BlocBase {
         });
         break;
     }
+
     _ordersController.add(_orders);
   }
 

@@ -43,7 +43,7 @@ class OrderTile extends StatelessWidget {
                   OrderHeader(order),
                   Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: order.data['product'].map<Widget>((p) {
+                    children: order.data['products'].map<Widget>((p) {
                       return ListTile(
                         title: Text('${p['product']['title']} ${p['size']}'),
                         subtitle: Text('${p['category']}/${p['pid']}'),

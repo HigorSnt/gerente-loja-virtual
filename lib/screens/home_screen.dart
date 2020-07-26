@@ -7,6 +7,7 @@ import 'package:gerentelojavirtual/tabs/orders_tab.dart';
 import 'package:gerentelojavirtual/tabs/products_tab.dart';
 import 'package:gerentelojavirtual/tabs/users_tab.dart';
 import 'package:gerentelojavirtual/widgets/edit_category_dialog.dart';
+import 'package:gerentelojavirtual/widgets/floating_button.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _orderBloc = BlocProvider.getBloc<OrdersBloc>();
-
   PageController _pageController;
   int _page = 0;
 
@@ -93,57 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      floatingActionButton: _buildFloating(),
+      floatingActionButton: FloatingButton(_page),
     );
-  }
-
-  Widget _buildFloating() {
-    if (_page == 1) {
-      return SpeedDial(
-        child: Icon(Icons.sort),
-        backgroundColor: Colors.pinkAccent,
-        overlayOpacity: 0.4,
-        overlayColor: Colors.black,
-        children: [
-          SpeedDialChild(
-            child: Icon(
-              Icons.arrow_downward,
-              color: Colors.pinkAccent,
-            ),
-            backgroundColor: Colors.white,
-            label: 'Concluídos Abaixo',
-            labelStyle: TextStyle(fontSize: 14),
-            onTap: () {
-              _orderBloc.setOrderCriteria(SortCriteria.READY_LAST);
-            },
-          ),
-          SpeedDialChild(
-            child: Icon(
-              Icons.arrow_upward,
-              color: Colors.pinkAccent,
-            ),
-            backgroundColor: Colors.white,
-            label: 'Concluídos Acima',
-            labelStyle: TextStyle(fontSize: 14),
-            onTap: () {
-              _orderBloc.setOrderCriteria(SortCriteria.READY_FIRST);
-            },
-          ),
-        ],
-      );
-    } else if (_page == 2) {
-      return FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.pinkAccent,
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => EditCategoryDialog(),
-          );
-        },
-      );
-    } else {
-      return null;
-    }
   }
 }

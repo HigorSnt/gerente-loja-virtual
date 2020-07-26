@@ -70,21 +70,30 @@ class UserBloc extends BlocBase {
       int numOrders = orders.documents.length;
       double money = 0.0;
 
-      for (DocumentSnapshot element in orders.documents) {
-        DocumentSnapshot order = await _firestore
-            .collection('orders')
-            .document(element.documentID)
-            .get();
-
-        if (order.data == null) continue;
-
-        money += order.data['totalPrice'];
+      if (numOrders == 0) {
         _users[uid].addAll({
           'money': money,
           'orders': numOrders,
         });
+      } else {
+        for (DocumentSnapshot element in orders.documents) {
+          DocumentSnapshot order = await _firestore
+              .collection('orders')
+              .document(element.documentID)
+              .get();
 
-        _usersController.add(_users.values.toList());
+          if (order.data == null) {
+            continue;
+          } else {
+            money += order.data['totalPrice'];
+            _users[uid].addAll({
+              'money': money,
+              'orders': numOrders,
+            });
+          }
+
+          _usersController.add(_users.values.toList());
+        }
       }
     });
   }

@@ -32,35 +32,36 @@ class UsersTab extends StatelessWidget {
         ),
         Expanded(
           child: StreamBuilder<List>(
-              stream: _userBloc.outUsers,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+            stream: _userBloc.outUsers,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+                  ),
+                );
+              } else if (snapshot.data.length == 0) {
+                return Center(
+                  child: Text(
+                    'Nenhum usuário encontrado!',
+                    style: TextStyle(
+                      color: Colors.pinkAccent,
                     ),
-                  );
-                } else if (snapshot.data.length == 0) {
-                  return Center(
-                    child: Text(
-                      'Nenhum usuário encontrado!',
-                      style: TextStyle(
-                        color: Colors.pinkAccent,
-                      ),
-                    ),
-                  );
-                } else {
-                  return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return UserTile(user: snapshot.data[index]);
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider();
-                    },
-                    itemCount: snapshot.data.length,
-                  );
-                }
-              }),
+                  ),
+                );
+              } else {
+                return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return UserTile(user: snapshot.data[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider();
+                  },
+                  itemCount: snapshot.data.length,
+                );
+              }
+            },
+          ),
         )
       ],
     );
