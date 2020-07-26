@@ -30,9 +30,7 @@ class OrdersTab extends StatelessWidget {
             );
           } else {
             return ListView.builder(
-              itemBuilder: (context, index) {
-                return OrderTile(snapshot.data[index]);
-              },
+              itemBuilder: (context, index) => OrderTile(snapshot.data[index]),
               itemCount: snapshot.data.length,
             );
           }

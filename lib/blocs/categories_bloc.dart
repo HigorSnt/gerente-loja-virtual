@@ -58,6 +58,7 @@ class CategoriesBloc extends BlocBase {
   Future saveData() async {
     if (image == null && category != null && title == category.data['title'])
       return;
+
     Map<String, dynamic> dataToUpdate = {};
     if (image != null) {
       StorageUploadTask task = FirebaseStorage.instance

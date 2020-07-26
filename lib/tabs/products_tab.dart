@@ -15,7 +15,7 @@ class _ProductsTabState extends State<ProductsTab> with AutomaticKeepAliveClient
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('products').snapshots(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(Colors.white),

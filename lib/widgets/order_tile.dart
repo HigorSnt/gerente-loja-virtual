@@ -59,8 +59,7 @@ class OrderTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       FlatButton(
-                        onPressed: order.data['status'] > 1
-                            ? () {
+                        onPressed: () {
                                 Firestore.instance
                                     .collection('users')
                                     .document(order['clientId'])
@@ -68,13 +67,12 @@ class OrderTile extends StatelessWidget {
                                     .document(order.documentID)
                                     .delete();
                                 order.reference.delete();
-                              }
-                            : null,
+                              },
                         textColor: Colors.red,
                         child: Text('Excluir'),
                       ),
                       FlatButton(
-                        onPressed: order.data['status'] < 4
+                        onPressed: order.data['status'] > 1
                             ? () {
                                 order.reference.updateData(
                                     {'status': order.data['status'] - 1});
@@ -84,11 +82,11 @@ class OrderTile extends StatelessWidget {
                         child: Text('Regredir'),
                       ),
                       FlatButton(
-                        onPressed: order.data['status'] > 1
+                        onPressed: order.data['status'] < 4
                             ? () {
-                                order.reference.updateData(
-                                    {'status': order.data['status'] + 1});
-                              }
+                          order.reference.updateData(
+                              {'status': order.data['status'] + 1});
+                        }
                             : null,
                         textColor: Colors.green,
                         child: Text('Avançar'),

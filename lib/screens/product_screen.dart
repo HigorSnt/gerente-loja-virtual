@@ -58,7 +58,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
             builder: (context, snapshot) {
               if (snapshot.data) {
                 return StreamBuilder<bool>(
-                  stream: _productBloc.outCreated,
+                  stream: _productBloc.outLoading,
                   initialData: false,
                   builder: (context, snapshot) {
                     return IconButton(
@@ -139,7 +139,7 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                       height: 16,
                     ),
                     Text(
-                      'Imagens',
+                      'Tamanhos',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12,

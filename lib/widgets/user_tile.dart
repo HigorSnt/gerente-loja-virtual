@@ -30,7 +30,7 @@ class UserTile extends StatelessWidget {
               style: _textStyle,
             ),
             Text(
-              'Gasto: R\$ ${user['money'].toStringAsFixed(2)}',
+              'Gasto: R\$${user['money'].toStringAsFixed(2)}',
               style: _textStyle,
             )
           ],

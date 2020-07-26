@@ -42,7 +42,6 @@ class OrdersBloc extends BlocBase {
         });
         break;
       case SortCriteria.READY_LAST:
-      case SortCriteria.READY_FIRST:
         _orders.sort((a, b) {
           int sa = a.data['status'];
           int sb = b.data['status'];

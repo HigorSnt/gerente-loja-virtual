@@ -14,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _orderBloc = BlocProvider.getBloc<OrdersBloc>();
+
   PageController _pageController;
   int _page = 0;
 
@@ -41,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           primaryColor: Colors.white,
           textTheme: Theme.of(context).textTheme.copyWith(
                 caption: TextStyle(
-                  color: Colors.white,
+                  color: Colors.white54,
                 ),
               ),
         ),
@@ -96,8 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildFloating() {
-    final _orderBloc = BlocProvider.getBloc<OrdersBloc>();
-
     if (_page == 1) {
       return SpeedDial(
         child: Icon(Icons.sort),

@@ -1,18 +1,20 @@
 class ProductValidator {
   String validateImages(List images) {
-    if (images.isEmpty) return 'Adicione imagens do produto';
-    return null;
+    if (images.isEmpty)
+      return 'Adicione imagens ao produto';
+    else
+      return null;
   }
 
   String validateTitle(String text) {
-    if (text.isEmpty) 
+    if (text.isEmpty)
       return 'Preencha o título do produto!';
     else
       return null;
   }
 
   String validateDescription(String text) {
-    if (text.isEmpty) 
+    if (text.isEmpty)
       return 'Preencha a descrição do produto!';
     else
       return null;
@@ -30,5 +32,4 @@ class ProductValidator {
 
     return null;
   }
-
 }

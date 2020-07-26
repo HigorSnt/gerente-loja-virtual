@@ -16,7 +16,7 @@ class LoginValidators {
       if (password.length > 4) {
         sink.add(password);
       } else {
-        sink.addError('A senha deve conter pelo menos 4 dígitos');
+        sink.addError('A senha deve conter pelo menos 4 caracteres!');
       }
     },
   );

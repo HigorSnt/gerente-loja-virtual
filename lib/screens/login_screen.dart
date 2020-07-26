@@ -63,7 +63,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
                 ),
               );
-              break;
             case LoginState.FAIL:
             case LoginState.SUCCESS:
             case LoginState.IDLE:
@@ -126,7 +125,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               );
-              break;
             default:
               return Container();
           }

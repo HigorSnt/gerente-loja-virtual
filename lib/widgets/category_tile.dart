@@ -17,9 +17,19 @@ class CategoryTile extends StatelessWidget {
       ),
       child: Card(
         child: ExpansionTile(
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(category.data['icon']),
-            backgroundColor: Colors.transparent,
+          leading: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => EditCategoryDialog(
+                  category: category,
+                ),
+              );
+            },
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(category.data['icon']),
+              backgroundColor: Colors.transparent,
+            ),
           ),
           title: Text(
             category.data['title'],
@@ -44,7 +54,7 @@ class CategoryTile extends StatelessWidget {
                       ),
                       title: Text(doc.data['title']),
                       trailing:
-                          Text('R\$ ${doc.data['price'].toStringAsFixed(2)}'),
+                          Text('R\$${doc.data['price'].toStringAsFixed(2)}'),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -59,19 +69,11 @@ class CategoryTile extends StatelessWidget {
                   }).toList()
                     ..add(
                       ListTile(
-                        leading: GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => EditCategoryDialog(category: category,),
-                            );
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.pinkAccent,
-                            ),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.pinkAccent,
                           ),
                         ),
                         title: Text('Adicionar'),
@@ -88,7 +90,7 @@ class CategoryTile extends StatelessWidget {
                     ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),

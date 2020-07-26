@@ -66,25 +66,26 @@ class UserBloc extends BlocBase {
         .document(uid)
         .collection('orders')
         .snapshots()
-        .listen((orders) {
+        .listen((orders) async {
       int numOrders = orders.documents.length;
       double money = 0.0;
-      orders.documents.forEach((element) async {
+
+      for (DocumentSnapshot element in orders.documents) {
         DocumentSnapshot order = await _firestore
             .collection('orders')
             .document(element.documentID)
             .get();
 
-        if (order.data != null) {
-          money += order.data['totalPrice'];
-        }
+        if (order.data == null) continue;
+
+        money += order.data['totalPrice'];
         _users[uid].addAll({
           'money': money,
           'orders': numOrders,
         });
 
         _usersController.add(_users.values.toList());
-      });
+      }
     });
   }
 
