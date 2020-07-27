@@ -1,12 +1,10 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gerentelojavirtual/blocs/orders_bloc.dart';
 import 'package:gerentelojavirtual/blocs/user_bloc.dart';
 import 'package:gerentelojavirtual/tabs/orders_tab.dart';
 import 'package:gerentelojavirtual/tabs/products_tab.dart';
 import 'package:gerentelojavirtual/tabs/users_tab.dart';
-import 'package:gerentelojavirtual/widgets/edit_category_dialog.dart';
 import 'package:gerentelojavirtual/widgets/floating_button.dart';
 
 class HomeScreen extends StatefulWidget {
