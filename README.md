@@ -16,11 +16,9 @@ Essa aplicação foi desenvolvida durante a execução do curso [Criação de Ap
 ## :white_check_mark: Resultado
 
 <p align="center">
-  <img alt="gif" src="http://moms.inspireblog.com.br/images/svg/embreve.svg" width="200px" />
+  <img alt="gif" src="./.github/homepage.png" width="200px" />
+  <img alt="gif" src="./.github/resultado.gif" width="200px" />
 </p>
-
-## :books: Documentação
-**TODO**
 
 ## :pencil: Pré-Requisitos
 
